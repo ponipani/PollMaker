@@ -49,12 +49,12 @@ Resources:
 				"answers": [
 					{
 						"id": 0,
-			      		"text": "answer 1"
-			    	},
-			    	{
-			      		"id": 1,
-			      		"text": "answer 2"
-			    	}
+			      			"text": "answer 1"
+			    		},
+			    		{
+			      			"id": 1,
+			      			"text": "answer 2"
+			    		}
 			  	],
 			  	"links": [
 			    	{
@@ -72,7 +72,7 @@ Resources:
 	
 		If a poll status is "STARTED" poll links will also contatin a "vote" link:
 		
-			{
+		{
 	      		"rel": "vote",
 	      		"href": "http://localhost:8080/api/poll/{id}/votes"
 	    	}
@@ -102,17 +102,17 @@ Resources:
 				"answers": [
 					{
 						"id": 0,
-				      	"text": "answer 1"
-				   	},
-				   	{
+				      		"text": "answer 1"
+				 	},
+				 	{
 				   		"id": 1,
-				      	"text": "answer 2"
-				   	}
+				      		"text": "answer 2"
+				 	}
 				],
 				"links": [
 					{
 				   		"rel": "self",
-				      	"href": "http://localhost:8080/api/poll/0"
+				      		"href": "http://localhost:8080/api/poll/0"
 				   	},
 				   	{
 				   		"rel": "statistic",
@@ -178,17 +178,17 @@ Resources:
 				"answers": [
 					{
 						"id": 0,
-				      	"text": "answer 1"
+				      		"text": "answer 1"
 				   	},
 				   	{
 				   		"id": 1,
-				      	"text": "answer 2"
+				      		"text": "answer 2"
 				   	}
 				],
 				"links": [
 					{
 				   		"rel": "self",
-				      	"href": "http://localhost:8080/api/poll/0"
+				      		"href": "http://localhost:8080/api/poll/0"
 				   	},
 				   	{
 				   		"rel": "statistic",
