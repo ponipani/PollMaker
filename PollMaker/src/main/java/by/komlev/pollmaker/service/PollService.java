@@ -61,9 +61,7 @@ public class PollService {
 		polls.add(poll);
 	}
 
-	public void updatePollStatus(int pollId, String status) throws ResourceValidationException, ResourceNotFoundException, ResourceOperationConflictException {
-
-		Poll poll = getPoll(pollId);
+	public void updatePollStatus(Poll poll, String status) throws ResourceValidationException, ResourceNotFoundException, ResourceOperationConflictException {
 
 		PollStatus newPollStatus;
 

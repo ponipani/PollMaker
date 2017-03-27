@@ -54,22 +54,21 @@ public class PollController {
 	}
 
 	@PatchMapping("/poll/{id}")
-	public ResponseEntity<Void> updatePoll(@PathVariable("id") int pollId, @RequestBody Map<String, Object> requestBody)
+	public ResponseEntity<Resource<Poll>> updatePoll(@PathVariable("id") int pollId, @RequestBody Map<String, Object> requestBody)
 			throws ResourceValidationException, ResourceNotFoundException, ResourceOperationConflictException {
-
-		HttpHeaders httpHeaders = new HttpHeaders();
-		httpHeaders.setLocation(linkTo(PollController.class).slash("poll").slash(pollId).toUri());
 
 		if (requestBody.containsKey("status")) {
 
-			pollService.updatePollStatus(pollId, (String) requestBody.get("status"));
+			Poll poll = pollService.getPoll(pollId);
+			
+			pollService.updatePollStatus(poll, (String) requestBody.get("status"));
+			
+			return ResponseEntity.ok(pollResourceAssembler.toResource(poll));
 
 		} else {
 
-			return new ResponseEntity<>(httpHeaders, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-
-		return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
 	}
 
 	@PostMapping("/poll/{id}/votes")
