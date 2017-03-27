@@ -7,7 +7,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>by.komlev.pollmaker</groupId>
 	<artifactId>PollMaker</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 	<name>PollMaker</name>
 	<description>Test project for OnTravelSolutions</description>
