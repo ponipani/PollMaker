@@ -57,14 +57,14 @@ Resources:
 			    		}
 			  	],
 			  	"links": [
-			    	{
-			      		"rel": "self",
-			      		"href": "http://localhost:8080/api/poll/0"
-			    	},
-			    	{
-			      		"rel": "statistic",
-			      		"href": "http://localhost:8080/api/poll/0/statistic"
-			    	}
+			    		{
+			      			"rel": "self",
+			      			"href": "http://localhost:8080/api/poll/0"
+			    		},
+			    		{
+			      			"rel": "statistic",
+			      			"href": "http://localhost:8080/api/poll/0/statistic"
+			    		}
 			  	]
 			}
 			
@@ -158,7 +158,7 @@ Resources:
 	PATCH http://{host}:{port}/api/poll/{id}
 
 		{
-			status : "STARTED"
+			status : "CLOSED"
 		}
 		
 	Example
