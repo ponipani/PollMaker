@@ -91,7 +91,7 @@ Resources:
 	PATCH http://{host}:{port}/api/poll/{id}
 
 		{
-			status : "STARTED"
+			"status" : "STARTED"
 		}
 		
 	Example
@@ -99,7 +99,7 @@ Resources:
 		PATCH http://localhost:8080/api/poll/0
 
 		{
-			status : "STARTED"
+			"status" : "STARTED"
 		}
 		
 		Response Body
@@ -167,7 +167,7 @@ Resources:
 	PATCH http://{host}:{port}/api/poll/{id}
 
 		{
-			status : "CLOSED"
+			"status" : "CLOSED"
 		}
 		
 	Example
@@ -175,7 +175,7 @@ Resources:
 		PATCH http://localhost:8080/api/poll/0
 
 		{
-			status : "CLOSED"
+			"status" : "CLOSED"
 		}
 		
 		Response Body
