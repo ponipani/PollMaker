@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import by.komlev.pollmaker.exception.ResourceNotFoundException;
 import by.komlev.pollmaker.exception.ResourceOperationConflictException;
 import by.komlev.pollmaker.exception.ResourceValidationException;
+import by.komlev.pollmaker.model.Answer;
 import by.komlev.pollmaker.model.Poll;
 import by.komlev.pollmaker.model.PollStatus;
 import by.komlev.pollmaker.model.Vote;
@@ -88,7 +89,7 @@ public class PollService {
 
 	}
 
-	public void submitVote(int pollId, Vote vote) throws ResourceNotFoundException, ResourceOperationConflictException {
+	public void submitVote(int pollId, int answerId) throws ResourceNotFoundException, ResourceOperationConflictException {
 
 		Poll poll = getPoll(pollId);
 
@@ -97,25 +98,26 @@ public class PollService {
 			throw new ResourceOperationConflictException("poll status needs to be " + PollStatus.STARTED);
 		}
 		
-		if (poll.getAnswers().stream().noneMatch(answer -> answer.getId() == vote.getAnswerId())){
+		Answer answer = poll.getAnswers().stream().filter(answ -> answ.getId() == answerId).findFirst().orElse(null);
+		
+		if (answer == null){
 			
-			throw new ResourceOperationConflictException("poll has no answer with id: " + vote.getAnswerId());
+			throw new ResourceOperationConflictException("poll has no answer with id: " + answerId);
 		}
 
+		Vote vote = new Vote();
+				
 		vote.setId(voteIdGenerator.getAndIncrement());
 
-		poll.getVotes().add(vote);
+		answer.getVotes().add(vote);
 	}
 
 	public String[] getPollStatistic(int pollId) throws ResourceNotFoundException {
 
 		Poll poll = getPoll(pollId);
 
-		Map<Integer, Long> answerIdVoteCountMap = poll.getVotes().stream()
-				.collect(Collectors.groupingBy(Vote::getAnswerId, Collectors.counting()));
-
 		String[] statistic = poll.getAnswers().stream()
-				.map(answer -> answer.getText() + " - " + answerIdVoteCountMap.computeIfAbsent(answer.getId(), key -> 0l))
+				.map(answer -> answer.getText() + " - " + answer.getVotes().size())
 				.toArray(String[]::new);
 
 		return statistic;

@@ -6,17 +6,14 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Poll {
-	
+
 	int id;
 
 	String theme = "";
-	
+
 	PollStatus status = PollStatus.CREATED;
 
 	List<Answer> answers = new ArrayList<>();
-
-	@JsonIgnore
-	List<Vote> votes = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -49,14 +46,5 @@ public class Poll {
 	public void setStatus(PollStatus status) {
 		this.status = status;
 	}
-
-	public List<Vote> getVotes() {
-		return votes;
-	}
-
-	public void setVotes(List<Vote> votes) {
-		this.votes = votes;
-	}
-
 
 }

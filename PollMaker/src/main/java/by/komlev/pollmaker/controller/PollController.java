@@ -60,9 +60,9 @@ public class PollController {
 		if (requestBody.containsKey("status")) {
 
 			Poll poll = pollService.getPoll(pollId);
-			
+
 			pollService.updatePollStatus(poll, (String) requestBody.get("status"));
-			
+
 			return ResponseEntity.ok(pollResourceAssembler.toResource(poll));
 
 		} else {
@@ -72,14 +72,22 @@ public class PollController {
 	}
 
 	@PostMapping("/poll/{id}/votes")
-	public ResponseEntity<Void> postVote(@PathVariable("id") int pollId, @RequestBody Vote vote) throws ResourceNotFoundException, ResourceOperationConflictException {
+	public ResponseEntity<Void> submitVote(@PathVariable("id") int pollId, @RequestBody Map<String, Object> requestBody)
+			throws ResourceNotFoundException, ResourceOperationConflictException {
 
-		pollService.submitVote(pollId, vote);
+		if (requestBody.containsKey("answerId")) {
+			
+			pollService.submitVote(pollId, (int) requestBody.get("answerId"));
 
-		HttpHeaders httpHeaders = new HttpHeaders();
-		httpHeaders.setLocation(linkTo(PollController.class).slash("poll").slash(pollId).toUri());
+			HttpHeaders httpHeaders = new HttpHeaders();
+			httpHeaders.setLocation(linkTo(PollController.class).slash("poll").slash(pollId).toUri());
 
-		return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
+			return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
+			
+		} else {
+
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	@GetMapping("/poll/{id}/statistic")
