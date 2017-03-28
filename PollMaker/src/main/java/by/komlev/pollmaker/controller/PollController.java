@@ -21,7 +21,6 @@ import by.komlev.pollmaker.exception.ResourceNotFoundException;
 import by.komlev.pollmaker.exception.ResourceOperationConflictException;
 import by.komlev.pollmaker.exception.ResourceValidationException;
 import by.komlev.pollmaker.model.Poll;
-import by.komlev.pollmaker.model.Vote;
 import by.komlev.pollmaker.service.PollService;
 
 @RestController
@@ -60,13 +59,10 @@ public class PollController {
 		if (requestBody.containsKey("status")) {
 
 			Poll poll = pollService.getPoll(pollId);
-
 			pollService.updatePollStatus(poll, (String) requestBody.get("status"));
 
 			return ResponseEntity.ok(pollResourceAssembler.toResource(poll));
-
 		} else {
-
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -83,9 +79,7 @@ public class PollController {
 			httpHeaders.setLocation(linkTo(PollController.class).slash("poll").slash(pollId).toUri());
 
 			return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
-			
 		} else {
-
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}

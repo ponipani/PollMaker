@@ -3,8 +3,6 @@ package by.komlev.pollmaker.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class Poll {
 
 	int id;

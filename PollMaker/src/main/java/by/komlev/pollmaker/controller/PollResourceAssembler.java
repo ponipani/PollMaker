@@ -21,7 +21,6 @@ public class PollResourceAssembler implements ResourceAssembler<Poll, Resource<P
 		resource.add(linkTo(PollController.class).slash("poll").slash(poll.getId()).slash("statistic").withRel("statistic"));
 
 		if (poll.getStatus() == PollStatus.STARTED) {
-
 			resource.add(linkTo(PollController.class).slash("poll").slash(poll.getId()).slash("votes").withRel("vote"));
 		}
 
