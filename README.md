@@ -2,6 +2,15 @@
 
 A standalone server Spring Boot REST Java 8 test application for ONTravelSolutions.
 
+This application allows to:
+
+1. Create a poll
+2. Start created poll
+3. Submit a vote to started poll
+4. Get poll data
+5. Get poll statistic
+6. Close started poll
+
 =============================
 
 REST api
@@ -32,7 +41,7 @@ Resources:
 	
 			Location: http://localhost:8080/api/poll/0
 
-1.2 Getting	poll data	
+1.2 Getting poll data	
 
 	GET http://{host}:{port}/api/poll/{id}
 		
@@ -49,22 +58,22 @@ Resources:
 				"answers": [
 					{
 						"id": 0,
-			      		"text": "answer 1"
-			    	},
-			    	{
-			      		"id": 1,
-			      		"text": "answer 2"
-			    	}
+			      			"text": "answer 1"
+			    		},
+			    		{
+			      			"id": 1,
+			      			"text": "answer 2"
+			    		}
 			  	],
 			  	"links": [
-			    	{
-			      		"rel": "self",
-			      		"href": "http://localhost:8080/api/poll/0"
-			    	},
-			    	{
-			      		"rel": "statistic",
-			      		"href": "http://localhost:8080/api/poll/0/statistic"
-			    	}
+			    		{
+			      			"rel": "self",
+			      			"href": "http://localhost:8080/api/poll/0"
+			    		},
+			    		{
+			      			"rel": "statistic",
+			      			"href": "http://localhost:8080/api/poll/0/statistic"
+			    		}
 			  	]
 			}
 			
@@ -72,7 +81,7 @@ Resources:
 	
 		If a poll status is "STARTED" poll links will also contatin a "vote" link:
 		
-			{
+		{
 	      		"rel": "vote",
 	      		"href": "http://localhost:8080/api/poll/{id}/votes"
 	    	}
@@ -102,17 +111,17 @@ Resources:
 				"answers": [
 					{
 						"id": 0,
-				      	"text": "answer 1"
-				   	},
-				   	{
+				      		"text": "answer 1"
+				 	},
+				 	{
 				   		"id": 1,
-				      	"text": "answer 2"
-				   	}
+				      		"text": "answer 2"
+				 	}
 				],
 				"links": [
 					{
 				   		"rel": "self",
-				      	"href": "http://localhost:8080/api/poll/0"
+				      		"href": "http://localhost:8080/api/poll/0"
 				   	},
 				   	{
 				   		"rel": "statistic",
@@ -158,7 +167,7 @@ Resources:
 	PATCH http://{host}:{port}/api/poll/{id}
 
 		{
-			status : "STARTED"
+			status : "CLOSED"
 		}
 		
 	Example
@@ -178,17 +187,17 @@ Resources:
 				"answers": [
 					{
 						"id": 0,
-				      	"text": "answer 1"
+				      		"text": "answer 1"
 				   	},
 				   	{
 				   		"id": 1,
-				      	"text": "answer 2"
+				      		"text": "answer 2"
 				   	}
 				],
 				"links": [
 					{
 				   		"rel": "self",
-				      	"href": "http://localhost:8080/api/poll/0"
+				      		"href": "http://localhost:8080/api/poll/0"
 				   	},
 				   	{
 				   		"rel": "statistic",
